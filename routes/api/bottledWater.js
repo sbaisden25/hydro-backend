@@ -1,44 +1,44 @@
 const router = require('express').Router();
 
 // Load Product model
-let Product = require('../../models/Product.js');
+let BottledWater = require('../../models/BottledWater.js');
 
 // Get all products
 router.route('/').get((req, res) => {
-  Product.find()
-    .then(products => res.json(products))
+  BottledWater.find()
+    .then(bottledWaterProducts => res.json(bottledWaterProducts))
 });
 
 // Get a product by id
 router.route('/:id').get((req, res) => {
-    Product.findById(req.params.id)
-      .then(product => res.json(product))
+  BottledWater.findById(req.params.id)
+      .then(bottledWaterProduct => res.json(bottledWaterProduct))
   });
   
   // Delete a product by id
   router.route('/:id').delete((req, res) => {
-    Product.findByIdAndDelete(req.params.id)
+    BottledWater.findByIdAndDelete(req.params.id)
       .then(() => res.json('Product deleted.'))
   });
   
   // Get products sorted by sortBy and tag
   router.route('/sort/:sortBy/tags/:tag').get((req, res) => {
-    Product.find({tags: req.params.tag})
+    BottledWater.find({tags: req.params.tag})
       .sort(req.params.sortBy)
-      .then(products => res.json(products))
+      .then(bottledWaterProducts => res.json(bottledWaterProducts))
   });
   
   // Get products with a specific tag
   router.route('/tags/:tag').get((req, res) => {
-    Product.find({tags: req.params.tag})
-      .then(products => res.json(products))
+    BottledWater.find({tags: req.params.tag})
+      .then(bottledWaterProducts => res.json(bottledWaterProducts))
   });
   
   // Get products sorted by sortBy
   router.route('/sort/:sortBy').get((req, res) => {
-    Product.find()
+    BottledWater.find()
       .sort(req.params.sortBy)
-      .then(products => res.json(products))
+      .then(bottledWaterProducts => res.json(bottledWaterProducts))
   });
   
     // Add a product
@@ -50,7 +50,7 @@ router.route('/:id').get((req, res) => {
     const link = req.body.link;
     //const tags = req.body.tags;
 
-    const newProduct = new Product({
+    const newBottledWater = new BottledWater({
         name,
         price,
         img,
@@ -60,7 +60,7 @@ router.route('/:id').get((req, res) => {
 
     });
 
-    newProduct.save()
+    newBottledWater.save()
     .then(() => res.json('Product added!'))
     });
 

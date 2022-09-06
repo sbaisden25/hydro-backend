@@ -31,8 +31,8 @@ connection.once('open', () => {
 })
    
 
-const productsRouter = require('./routes/api/products');
-app.use('/products', productsRouter); 
+const bottledWaterRouter = require('./routes/api/bottledWater');
+app.use('/bottledWater', bottledWaterRouter); 
 
 
 app.listen(port, () => {
